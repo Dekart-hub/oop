@@ -1,0 +1,17 @@
+﻿  flipbyte.vcxproj -> C:\Users\Dekart\source\repos\flipbyte\Debug\flipbyte.exe
+  0
+  Test 1 passed
+  255
+  Test 2 passed
+  222
+  Test 3 passed
+  <input number> must be in range of 0..255
+  Test 4 passed
+  <input number> must be in range of 0..255
+  Test 5 passed
+  Incorrect number
+  Test 6 passed
+  Invalid arguments count
+  Usage: flipbyte.exe <input number>
+  Test 7 passed
+  Congratulations!

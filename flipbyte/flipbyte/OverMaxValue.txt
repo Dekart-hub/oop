@@ -1,0 +1,1 @@
+<input number> must be in range of 0..255
