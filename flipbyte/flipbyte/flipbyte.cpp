@@ -53,7 +53,8 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	std::cout << FlipByte(args->inNum) << "\n";
+	//std::cout << FlipByte(args->inNum) << "\n";
+	printf("%d\n", FlipByte(args->inNum));
 
 	return 0;
 }
