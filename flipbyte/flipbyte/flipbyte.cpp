@@ -30,7 +30,7 @@ std::optional<Args> ParseArgs(int argc, char* argv[])
 }
 
 
-int FlipByte(int byte)
+uint8_t FlipByte(uint8_t byte)
 {
 	byte = (byte & 0x55) << 1 | (byte & 0xAA) >> 1;
 	byte = (byte & 0x33) << 2 | (byte & 0xCC) >> 2;
