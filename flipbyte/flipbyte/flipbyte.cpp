@@ -3,12 +3,7 @@
 #include <optional>
 #include <string>
 
-struct Args
-{
-	int inNum;
-};
-
-std::optional<Args> ParseArgs(int argc, char* argv[])
+std::optional<uint8_t> ParseArgs(int argc, char* argv[])
 {
 	if (argc != 2)
 	{
@@ -16,19 +11,26 @@ std::optional<Args> ParseArgs(int argc, char* argv[])
 		std::cout << "Usage: flipbyte.exe <input number>\n";
 		return std::nullopt;
 	}
-	Args args;
+
+	int temp;
+
 	try
 	{
-		args.inNum = std::stoi(argv[1]);
+		temp = std::stoi(argv[1]);
 	}
-	catch (std::exception&)
+	catch (const std::exception&)
 	{
 		std::cout << "Incorrect number\n";
 		return std::nullopt;
 	}
-	return args;
+	
+	if (temp > 255 || temp < 0)
+	{
+		std::cout << "<input number> must be in range of 0..255\n";
+		return std::nullopt;
+	}
+	return temp;
 }
-
 
 uint8_t FlipByte(uint8_t byte)
 {
@@ -40,21 +42,16 @@ uint8_t FlipByte(uint8_t byte)
 
 int main(int argc, char* argv[])
 {
-	auto args = ParseArgs(argc, argv);
-	if (!args)
+	uint8_t arg;
+
+	try
+	{
+		arg = ParseArgs(argc, argv).value();
+	}
+	catch (const std::bad_optional_access&)
 	{
 		return 1;
 	}
-
-
-	if ((args->inNum > 255) || (args->inNum < 0))
-	{
-		std::cout << "<input number> must be in range of 0..255\n";
-		return 1;
-	}
-
-	//std::cout << FlipByte(args->inNum) << "\n";
-	printf("%d\n", FlipByte(args->inNum));
-
+	printf("%d\n", FlipByte(arg));
 	return 0;
 }

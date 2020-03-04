@@ -7,7 +7,7 @@ if %MyProgram%=="" (
 )
 
 REM Min value  
-%MyProgram% 0 >%TEMP%\test.txt  || goto err
+%MyProgram% 0 > %TEMP%\test.txt  || goto err
 fc %TEMP%\test.txt MinValue.txt > nul || goto err
 del %TEMP%\test.txt
 echo Test 1 passed
@@ -46,6 +46,7 @@ fc %TEMP%\test.txt NoArg.txt > nul || goto err
 del %TEMP%\test.txt
 echo Test 7 passed
 
+:corr
 REM Tests OK
 echo Congratulations!
 exit /B 0
