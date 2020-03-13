@@ -12,39 +12,52 @@ fc %TEMP%\test.txt EmptyCorr.txt > nul || goto err
 del %TEMP%\test.txt
 echo Test 1 passed
 
-REM Max value
-%MyProgram% 255 >%TEMP%\test.txt  || goto err
-fc %TEMP%\test.txt MaxValue.txt > nul || goto err
-del %TEMP%\test.txt 
+REM pack 255 symbols
+%MyProgram% pack 255Symb.txt %TEMP%\test.txt  || goto err
+fc %TEMP%\test.txt 255SymbCorr.txt > nul || goto err
+del %TEMP%\test.txt
 echo Test 2 passed
 
-REM Random value in range
-%MyProgram% 123 >%TEMP%\test.txt  || goto err
-fc %TEMP%\test.txt RandomValue.txt > nul || goto err
+REM pack 256 symbols
+%MyProgram% pack 256Symb.txt %TEMP%\test.txt  || goto err
+fc %TEMP%\test.txt 256SymbCorr.txt > nul || goto err
 del %TEMP%\test.txt
 echo Test 3 passed
 
-REM More than max value
-%MyProgram% 270 >%TEMP%\test.txt  && goto err
-fc %TEMP%\test.txt OverMaxValue.txt > nul || goto err
+REM pack 257 symbols
+%MyProgram% pack 257Symb.txt %TEMP%\test.txt  || goto err
+fc %TEMP%\test.txt 257SymbCorr.txt > nul || goto err
 del %TEMP%\test.txt
 echo Test 4 passed
 
-REM Less than min value
-%MyProgram% -10 >%TEMP%\test.txt  && goto err
-fc %TEMP%\test.txt LessMinValue.txt > nul || goto err
+REM 255 symbols unpack
+%MyProgram% unpack 255SymbCorr.txt %TEMP%\test.txt  || goto err
+fc %TEMP%\test.txt 255Symb.txt > nul || goto err
 del %TEMP%\test.txt
 echo Test 5 passed
 
-REM Not number
-%MyProgram% hello && goto err
+REM 256 symbols unpack
+%MyProgram% unpack 256SymbCorr.txt %TEMP%\test.txt  || goto err
+fc %TEMP%\test.txt 256Symb.txt > nul || goto err
+del %TEMP%\test.txt
 echo Test 6 passed
 
-REM argument not specified
-%MyProgram% >%TEMP%\test.txt  && goto err
-fc %TEMP%\test.txt NoArg.txt > nul || goto err
+REM 255 symbols unpack
+%MyProgram% unpack 257SymbCorr.txt %TEMP%\test.txt  || goto err
+fc %TEMP%\test.txt 257Symb.txt > nul || goto err
 del %TEMP%\test.txt
 echo Test 7 passed
+
+REM incorrect arguments count
+%MyProgram% %TEMP%\test.txt  && goto err
+fc %TEMP%\test.txt NoArg.txt > nul || goto err
+del %TEMP%\test.txt
+echo Test 8 passed
+
+REM incorrect arguments count
+%MyProgram% unpack EvenPacked.txt %TEMP%\test.txt  || goto err
+del %TEMP%\test.txt
+echo Test 9 passed
 
 :corr
 REM Tests OK

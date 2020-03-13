@@ -32,10 +32,10 @@ int Unpack(ifstream& input, ofstream& output)
 	char ch;
 	while (input.get(ch))
 	{
-		char16_t count;
-		if (input.get(count))
+		unsigned char count;
+		if (input.get(reinterpret_cast<char&>(count)))
 		{
-			for (int i = 0; i < (int)(count); i++)
+			for (unsigned i = 0; i < count; i++)
 			{
 				output << ch;
 			}

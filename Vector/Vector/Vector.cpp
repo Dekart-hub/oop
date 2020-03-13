@@ -5,13 +5,9 @@
 using namespace std;
 int main()
 {
-	vector<float> ReplayBuffer;
-	for (string f; getline(cin, f, ',');)
-	{
-		ReplayBuffer.push_back(stof(f));
-	}
+	vector<double> numbers(istream_iterator<double>(cin), (istream_iterator<double>()));
 
-	for (auto f : ReplayBuffer)
+	for (auto f : numbers)
 	{
 		std::cout << f << " , ";
 	}

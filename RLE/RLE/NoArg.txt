@@ -1,0 +1,2 @@
+Invalid arguments count
+Usage: RLE.exe <mode> <input file> <output file>
