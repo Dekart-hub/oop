@@ -85,7 +85,7 @@ bool Pack(ifstream& input, ofstream& output)
 	return true;
 }
 
-bool Unnamed(string const& inputFile, string const& outputFile, string const& mode)
+bool Convert(string const& inputFile, string const& outputFile, string const& mode)
 {
 	ifstream input;
 	ofstream output;
@@ -144,6 +144,6 @@ int main(int argc, char* argv[])
 	{
 		return 1;
 	}
-	Unnamed(args->inputFile, args->outputFile, args->mode);
+	Convert(args->inputFile, args->outputFile, args->mode);
 	return 0;
 }
